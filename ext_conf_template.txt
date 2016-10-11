@@ -1,0 +1,8 @@
+# cat=MAIL//1; type=string; label=LLL:EXT:mail_spool/Resources/Private/Language/locallang_be.xlf:configuration.spool
+spool = file
+
+# cat=MAIL//2; type=string; label=LLL:EXT:mail_spool/Resources/Private/Language/locallang_be.xlf:configuration.spool_file_path
+spool_file_path = uploads/tx_mailspool/
+
+# cat=MAIL//3; type=string; label=LLL:EXT:mail_spool/Resources/Private/Language/locallang_be.xlf:configuration.transport_real
+transport_real =

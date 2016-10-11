@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-08T13:11:57Z" product-name="jobqueue">
+		<header/>
+		<body>
+			<trans-unit id="configuration.spool">
+				<source>Spool type:
+					[file] Messages get stored to the file system till they get sent through the scheduler.
+					[memory] Messages get send at the end of the running process.
+					[classname] Custom class which implements the Swift_Spool interface.
+				</source>
+			</trans-unit>
+			<trans-unit id="configuration.spool_file_path">
+				<source>File spool path: Path where messages get temporarly stored.</source>
+			</trans-unit>
+			<trans-unit id="configuration.transport_real">
+				<source>Real transport: Same as "$GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport']". Empty defaults to whatever is set in local configuration.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
