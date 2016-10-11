@@ -6,11 +6,12 @@ Documentation
 
 This extension integrates the swiftmailer spool transport for TYPO3.
 
-:Memory:
+:memory:
     Messages get sent at the end of frontend generating if no error occured.
-:File:
+:file:
     Messages get stored on the filesystem and sent over the spool command.
-
+:classname:
+    Any class which implements Swift_Spool interface.
 
 Commands (CLI)
 ---------------
