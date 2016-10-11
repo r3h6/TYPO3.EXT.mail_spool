@@ -4,7 +4,7 @@
 Documentation
 =============
 
-This extension integrates swift's memory and file spool transport.
+This extension integrates the swiftmailer spool transport for TYPO3.
 
 :Memory:
     Messages get sent at the end of frontend generating if no error occured.
@@ -15,7 +15,7 @@ This extension integrates swift's memory and file spool transport.
 Commands (CLI)
 ---------------
 
-See ``./typo3/cli_dispatch.phpsh extbase help`` for details.
+See ``./typo3/cli_dispatch.phpsh extbase help spool:send`` for details.
 
 
 Scheduler
@@ -30,5 +30,5 @@ Configuration
 You can configure the type of spool and the location where the messsages get stored in the extension configurations.
 
 .. note::
-    This extension changes the mail transport configuration to ``TYPO3\MailSpool\Mail\SpoolTransport``.
+    This extension changes the mail transport configuration to ``R3H6\MailSpool\Mail\SpoolTransport``.
     Messages get sent over whatever transport is defined in the install tool.
