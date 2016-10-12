@@ -57,11 +57,12 @@ class SpoolTransport extends \Swift_SpoolTransport
 
             $transport = $mailer->getTransport();
 
+            $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
+
             return $transport;
         } catch (\Exception $exception) {
-            throw new \Exception('Could not create real transport '.$exception->getMessage(), 1476212381);
-        } finally {
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
+            throw new \Exception('Could not create real transport '.$exception->getMessage(), 1476212381);
         }
     }
 
