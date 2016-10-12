@@ -15,6 +15,8 @@ namespace R3H6\MailSpool\Tests\Unit\Mail;
  * Public License for more details.                                       *
  *                                                                        */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Unit test for the SpoolTransport.
  */
@@ -27,7 +29,10 @@ class SpoolTransportTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     public function setUp()
     {
-        $GLOBALS['TYPO3_DB'] = $this->getMock('TYPO3\\CMS\\Core\\Database\\DatabaseConnection', get_class_methods('TYPO3\\CMS\\Core\\Database\\DatabaseConnection'), array(), '', false);
+        // $GLOBALS['TYPO3_DB'] = $this->getMock('TYPO3\\CMS\\Core\\Database\\DatabaseConnection', get_class_methods('TYPO3\\CMS\\Core\\Database\\DatabaseConnection'), array(), '', false);
+
+        $classInfoCacheMock = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\Container\\ClassInfoCache', array(), array(), '', false);
+        GeneralUtility::addInstance('TYPO3\\CMS\\Extbase\\Object\\Container\\ClassInfoCache', $classInfoCacheMock);
 
         $configuration = array(
             'transport' => 'R3H6\\MailSpool\\Mail\\SpoolTransport',
