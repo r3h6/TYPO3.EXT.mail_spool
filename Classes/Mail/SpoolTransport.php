@@ -39,7 +39,7 @@ class SpoolTransport extends \Swift_SpoolTransport
     public function __construct(array $configuration)
     {
         $this->configuration = $configuration;
-        $spool = GeneralUtility::makeInstance(SpoolFactory::class)->get($configuration);
+        $spool = $this->getSpoolFactory()->get($configuration);
         parent::__construct($spool);
     }
 
@@ -63,5 +63,15 @@ class SpoolTransport extends \Swift_SpoolTransport
         } finally {
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
         }
+    }
+
+    /**
+     * [getSpoolFactory description].
+     *
+     * @return R3H6\MailSpool\Mail\SpoolFactory
+     */
+    protected function getSpoolFactory()
+    {
+        return GeneralUtility::makeInstance('R3H6\\MailSpool\\Mail\\SpoolFactory');
     }
 }
