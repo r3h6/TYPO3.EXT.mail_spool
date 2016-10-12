@@ -34,7 +34,7 @@ class SpoolCommandController extends CommandController
      */
     public function sendCommand($messageLimit = null, $timeLimit = null, $recoverTimeout = null)
     {
-        $this->outputLine(sprintf('<info>[%s]</info> Processing <info>%s</info> mailer... ', date('Y-m-d H:i:s'), $name));
+        $this->outputLine(sprintf('<info>[%s]</info> Processing mailer... ', date('Y-m-d H:i:s')));
 
         $mailer = $this->getMailer();
 

@@ -67,8 +67,28 @@ class SpoolFactory implements \TYPO3\CMS\Core\SingletonInterface
     protected function flushMemoryQueue()
     {
         if ($this->memorySpool !== null) {
-            $this->memorySpool->flushQueue();
+            $mailer = $this->getMailer();
+            $transport = $mailer->getTransport();
+
+            if ($transport instanceof \R3H6\MailSpool\Mail\SpoolTransport) {
+                $failedRecipients = array();
+                $sent = $this->memorySpool->flushQueue($transport->getRealTransport(), $failedRecipients);
+                if (!$sent) {
+                    \TYPO3\CMS\Core\Utility\GeneralUtility::sysLog('Could not send e-mail', 'mail_spool', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_ERROR);
+                    // throw new \RuntimeException('No e-mail has been sent', 1476304931);
+                }
+            }
         }
+    }
+
+    /**
+     * Returns the TYPO3 mailer.
+     *
+     * @return \TYPO3\CMS\Core\Mail\Mailer
+     */
+    protected function getMailer()
+    {
+        return GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\Mailer');
     }
 
     /**
