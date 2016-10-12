@@ -27,7 +27,7 @@ class SpoolTransportTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     public function setUp()
     {
-        $GLOBALS['TYPO3_DB'] = $this->getMock('TYPO3\\CMS\Core\Database\DatabaseConnection', get_class_methods('TYPO3\\CMS\\Core\\Database\\DatabaseConnection'), array(), '', false);
+        $GLOBALS['TYPO3_DB'] = $this->getMock('TYPO3\\CMS\\Core\\Database\\DatabaseConnection', get_class_methods('TYPO3\\CMS\\Core\\Database\\DatabaseConnection'), array(), '', false);
 
         $configuration = array(
             'transport' => 'R3H6\\MailSpool\\Mail\\SpoolTransport',

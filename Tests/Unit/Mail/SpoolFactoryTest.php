@@ -29,7 +29,7 @@ class SpoolFactoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     public function setUp()
     {
-        $this->subject = $this->getMock(SpoolFactory::class, array('__destruct'));
+        $this->subject = $this->getMock('R3H6\\MailSpool\\Mail\\SpoolFactory', array('__destruct'));
     }
 
     public function tearDown()

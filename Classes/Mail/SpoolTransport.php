@@ -16,25 +16,23 @@ namespace R3H6\MailSpool\Mail;
  *                                                                        */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use R3H6\MailSpool\Mail\SpoolFactory;
 
 /**
- * SpoolTransport
+ * SpoolTransport.
  *
  * Wrapper class for using configured spool for transport.
  */
 class SpoolTransport extends \Swift_SpoolTransport
 {
-
     /**
-     * Mail configuration
+     * Mail configuration.
      *
      * @var array
      */
     protected $configuration;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param array $configuration System mail configuration.
      */
@@ -45,7 +43,7 @@ class SpoolTransport extends \Swift_SpoolTransport
         parent::__construct($spool);
     }
 
-     /**
+    /**
      * Get real transport for sending messages.
      *
      * @return Swift_Transport
@@ -55,13 +53,13 @@ class SpoolTransport extends \Swift_SpoolTransport
         try {
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport_real'];
 
-            $mailer = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Mail\Mailer::class);
+            $mailer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\Mailer');
 
             $transport = $mailer->getTransport();
 
             return $transport;
         } catch (\Exception $exception) {
-            throw new \Exception('Could not create real transport ' . $exception->getMessage(), 1476212381);
+            throw new \Exception('Could not create real transport '.$exception->getMessage(), 1476212381);
         } finally {
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
         }
