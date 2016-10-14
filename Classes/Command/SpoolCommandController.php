@@ -30,9 +30,10 @@ class SpoolCommandController extends CommandController
      * @param  int $messageLimit   The maximum number of messages to send.
      * @param  int $timeLimit      The time limit for sending messages (in seconds).
      * @param  int $recoverTimeout The timeout for recovering messages that have taken too long to send (in seconds).
+     * @param  bool $daemon True for running as daemon (EXPERIMENTAL, CLI ONLY!).
      * @return void
      */
-    public function sendCommand($messageLimit = null, $timeLimit = null, $recoverTimeout = null)
+    public function sendCommand($messageLimit = null, $timeLimit = null, $recoverTimeout = null, $daemon = false)
     {
         $this->outputLine(sprintf('<info>[%s]</info> Processing mailer... ', date('Y-m-d H:i:s')));
 
@@ -45,18 +46,30 @@ class SpoolCommandController extends CommandController
                 $spool->setMessageLimit($messageLimit);
                 $spool->setTimeLimit($timeLimit);
             }
-            if ($spool instanceof \Swift_FileSpool) {
-                if (null !== $recoverTimeout) {
-                    $spool->recover($recoverTimeout);
-                } else {
-                    $spool->recover();
+            do {
+                if ($spool instanceof \Swift_FileSpool) {
+                    if (null !== $recoverTimeout) {
+                        $spool->recover($recoverTimeout);
+                    } else {
+                        $spool->recover();
+                    }
                 }
-            }
-            $sent = $spool->flushQueue($transport->getRealTransport());
-            $this->outputLine(sprintf('<comment>%d</comment> emails sent', $sent));
+                $sent = $spool->flushQueue($transport->getRealTransport());
+                $this->outputLine(sprintf('<comment>%d</comment> emails sent', $sent));
+            } while ($daemon && $this->idle());
         } else {
             $this->outputLine('Transport is not a <info>Swift_Transport_SpoolTransport</info>.');
         }
+    }
+
+    /**
+     * Be idle for a while
+     *
+     * @return bool true if relaxed ;-)
+     */
+    protected function idle()
+    {
+        return !sleep(3);
     }
 
     /**
