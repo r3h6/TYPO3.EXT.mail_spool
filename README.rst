@@ -73,3 +73,13 @@ See ``./typo3/cli_dispatch.phpsh extbase help spool:send`` for details.
    script
    /var/www/dev7.local.typo3.org/typo3/cli_dispatch.phpsh extbase spool:send --daemon >/dev/null 2>&1
    end script
+
+
+Contributing
+------------
+
+Bug reports and pull request are welcome through `GitHub <https://github.com/r3h6/TYPO3.EXT.mail_spool/>`_.
+
+Pull request
+^^^^^^^^^^^^
+Pull request to the master branch will be ignored. Please use develop branch.
