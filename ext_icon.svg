@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="595.275px" height="595.275px" viewBox="0 0 595.275 595.275" enable-background="new 0 0 595.275 595.275"
+	 xml:space="preserve">
+<g id="Layer_2">
+	<rect x="0" y="0" fill="#3498DB" width="595.275" height="595.275"/>
+</g>
+<g id="Layer_1">
+	<g>
+		<g>
+			<g>
+				<path fill="#3399CC" d="M527.637,380.081H141.928V120.074h385.709V380.081z"/>
+			</g>
+			<g id="soical_2_">
+				<g id="social_2_" transform="translate(-873.000000, -638.000000)">
+					<g id="slices_2_" transform="translate(173.000000, 138.000000)">
+					</g>
+					<g id="icon_2_" transform="translate(182.000000, 150.000000)">
+						<path id="mail_2_" fill="#FFFFFF" d="M1025.782,766.643l171.432-148.569H854.357L1025.782,766.643z M979.478,750.199
+							l46.304,38.015l45.58-38.015l125.852,107.882H854.357L979.478,750.199z M842.928,846.656V629.503L968.641,738.07
+							L842.928,846.656z M1208.637,846.656V629.503L1082.928,738.07L1208.637,846.656z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="#3399CC" d="M497.634,410.086H111.928v-260.01h385.706V410.086z"/>
+			</g>
+			<g id="soical_1_">
+				<g id="social_1_" transform="translate(-873.000000, -638.000000)">
+					<g id="slices_1_" transform="translate(173.000000, 138.000000)">
+					</g>
+					<g id="icon_1_" transform="translate(182.000000, 150.000000)">
+						<path id="mail_1_" fill="#FFFFFF" d="M995.78,796.645l171.43-148.569H824.357L995.78,796.645z M949.477,780.2l46.303,38.016
+							l45.578-38.016l125.852,107.884H824.357L949.477,780.2z M812.927,876.661V659.504L938.64,768.072L812.927,876.661z
+							 M1178.634,876.661V659.504l-125.707,108.567L1178.634,876.661z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="#3399CC" d="M467.632,440.089H81.927V180.077h385.705V440.089z"/>
+			</g>
+			<g id="soical">
+				<g id="social" transform="translate(-873.000000, -638.000000)">
+					<g id="slices" transform="translate(173.000000, 138.000000)">
+					</g>
+					<g id="icon" transform="translate(182.000000, 150.000000)">
+						<path id="mail" fill="#FFFFFF" d="M965.78,826.648l171.428-148.571H794.356L965.78,826.648z M919.477,810.203l46.303,38.017
+							l45.577-38.017l125.852,107.886H794.356L919.477,810.203z M782.927,906.665V689.506L908.64,798.074L782.927,906.665z
+							 M1148.632,906.665V689.506l-125.709,108.568L1148.632,906.665z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
