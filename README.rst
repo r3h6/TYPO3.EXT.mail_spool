@@ -1,5 +1,8 @@
 .. _start:
 
+.. image:: https://travis-ci.org/r3h6/TYPO3.EXT.mail_spool.svg?branch=master
+    :target: https://travis-ci.org/r3h6/TYPO3.EXT.mail_spool
+
 =============
 Documentation
 =============
@@ -10,10 +13,10 @@ This extension integrates the swiftmailer spool transport for TYPO3.
 Installation
 ------------
 
-Simply install the extension as usual.
+Through `TER <https://typo3.org/extensions/repository/view/mail_spool/>`_ or with `composer <https://composer.typo3.org/satis.html#!/mail_spool>`_ (typo3-ter/error404page).
 
 .. warning::
-   After installation this extension overwrites with the file "ext_localconf" the mail transport configuration to ``R3H6\MailSpool\Mail\SpoolTransport``!
+   After installation this extension overwrites in the file "ext_localconf" the mail transport configuration to ``R3H6\MailSpool\Mail\SpoolTransport``!
 
 
 Configuration
@@ -64,7 +67,7 @@ See ``./typo3/cli_dispatch.phpsh extbase help spool:send`` for details.
    # Respawn settings
    respawn
    # respawn limit COUNT INTERVAL
-   respawn limit 10 5
+   respawn limit unlimited
 
    # Run your script!
    script

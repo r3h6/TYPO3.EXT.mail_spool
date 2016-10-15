@@ -21,7 +21,7 @@ namespace R3H6\MailSpool\Tests\Unit\Command;
 class SpoolCommandControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var R3H6\MailSpool\Command\SpoolCommandController
+     * @var \R3H6\MailSpool\Command\SpoolCommandController
      */
     protected $subject;
 

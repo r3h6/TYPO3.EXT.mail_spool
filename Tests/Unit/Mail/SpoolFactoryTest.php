@@ -23,7 +23,7 @@ use R3H6\MailSpool\Mail\SpoolFactory;
 class SpoolFactoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var R3H6\MailSpool\Mail\SpoolFactory
+     * @var \R3H6\MailSpool\Mail\SpoolFactory
      */
     protected $subject;
 

@@ -46,19 +46,15 @@ class SpoolTransport extends \Swift_SpoolTransport
     /**
      * Get real transport for sending messages.
      *
-     * @return Swift_Transport
+     * @return \Swift_Transport
      */
     public function getRealTransport()
     {
         try {
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport_real'];
-
-            $mailer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\Mailer');
-
+            $mailer = $this->getMailer();
             $transport = $mailer->getTransport();
-
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
-
             return $transport;
         } catch (\Exception $exception) {
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
@@ -67,9 +63,19 @@ class SpoolTransport extends \Swift_SpoolTransport
     }
 
     /**
+     * Returns the TYPO3 mailer.
+     *
+     * @return \TYPO3\CMS\Core\Mail\Mailer
+     */
+    protected function getMailer()
+    {
+        return GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\Mailer');
+    }
+
+    /**
      * [getSpoolFactory description].
      *
-     * @return R3H6\MailSpool\Mail\SpoolFactory
+     * @return \R3H6\MailSpool\Mail\SpoolFactory
      */
     protected function getSpoolFactory()
     {

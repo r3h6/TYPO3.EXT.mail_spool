@@ -35,9 +35,9 @@ class SpoolFactory implements \TYPO3\CMS\Core\SingletonInterface
      * Get a new spool instance from configuration.
      *
      * @param  array  $configuration Spool configuration
-     * @return Swift_Spool
-     * @throws MailSpoolException
-     * @throws Swift_IoException
+     * @return \Swift_Spool
+     * @throws \RuntimeException
+     * @throws \Swift_IoException
      */
     public function get(array $configuration)
     {
@@ -64,6 +64,11 @@ class SpoolFactory implements \TYPO3\CMS\Core\SingletonInterface
         return $spool;
     }
 
+    /**
+     * Flushs the memory queue.
+     *
+     * @return  void
+     */
     protected function flushMemoryQueue()
     {
         if ($this->memorySpool !== null) {
@@ -72,10 +77,13 @@ class SpoolFactory implements \TYPO3\CMS\Core\SingletonInterface
 
             if ($transport instanceof \R3H6\MailSpool\Mail\SpoolTransport) {
                 $failedRecipients = array();
-                $sent = $this->memorySpool->flushQueue($transport->getRealTransport(), $failedRecipients);
-                if (!$sent) {
-                    \TYPO3\CMS\Core\Utility\GeneralUtility::sysLog('Could not send e-mail', 'mail_spool', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_ERROR);
-                    // throw new \RuntimeException('No e-mail has been sent', 1476304931);
+                try {
+                    $sent = $this->memorySpool->flushQueue($transport->getRealTransport(), $failedRecipients);
+                    if (!$sent) {
+                        throw new \RuntimeException('No e-mail has been sent', 1476304931);
+                    }
+                } catch (\Exception $exception) {
+                    \TYPO3\CMS\Core\Utility\GeneralUtility::sysLog($exception->getMessage(), 'mail_spool', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_ERROR);
                 }
             }
         }
@@ -92,7 +100,7 @@ class SpoolFactory implements \TYPO3\CMS\Core\SingletonInterface
     }
 
     /**
-     *
+     * Destructor.
      */
     public function __destruct()
     {

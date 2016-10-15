@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class SpoolTransportTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var R3H6\MailSpool\Mail\SpoolTransport
+     * @var \R3H6\MailSpool\Mail\SpoolTransport
      */
     protected $subject;
 
@@ -50,7 +50,7 @@ class SpoolTransportTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function getRealTransport()
+    public function getRealTransportReturnsTransport()
     {
         $this->assertInstanceOf('R3H6\\MailSpool\\Tests\\Unit\\Mail\\Fixtures\\TestTransport', $this->subject->getRealTransport());
         $this->assertSame('R3H6\\MailSpool\\Mail\\SpoolTransport', $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport']);

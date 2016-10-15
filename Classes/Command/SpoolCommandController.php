@@ -32,6 +32,7 @@ class SpoolCommandController extends CommandController
      * @param  int $recoverTimeout The timeout for recovering messages that have taken too long to send (in seconds).
      * @param  bool $daemon True for running as daemon (EXPERIMENTAL, CLI ONLY!).
      * @return void
+     * @throws \Exception
      */
     public function sendCommand($messageLimit = null, $timeLimit = null, $recoverTimeout = null, $daemon = false)
     {
