@@ -62,8 +62,7 @@ See ``./typo3/cli_dispatch.phpsh extbase help spool:send`` for details.
 .. note::
    If you like run the command as a daemon on linux systems you can try `Upstart <https://en.wikipedia.org/wiki/Upstart>`_.
 
-.. code-block:: bash
-   :linenos:
+.. code-block::
 
    # Example
 
