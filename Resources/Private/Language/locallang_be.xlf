@@ -5,7 +5,7 @@
 		<body>
 			<trans-unit id="configuration.spool">
 				<source>Spool type:
-					[file] Messages get stored to the file system till they get sent through the scheduler.
+					[file] Messages get stored to the file system till they get sent through the scheduler or cli command.
 					[memory] Messages get send at the end of the running process if no error occurs.
 					[classname] Custom class which implements the Swift_Spool interface.
 				</source>
