@@ -1,3 +1,9 @@
+﻿.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+
 .. _start:
 
 .. image:: https://travis-ci.org/r3h6/TYPO3.EXT.mail_spool.svg?branch=master
@@ -62,7 +68,7 @@ See ``./typo3/cli_dispatch.phpsh extbase help spool:send`` for details.
 .. note::
    If you like run the command as a daemon on linux systems you can try `Upstart <https://en.wikipedia.org/wiki/Upstart>`_.
 
-.. code-block::
+.. code-block:: sh
 
    # Example
 
