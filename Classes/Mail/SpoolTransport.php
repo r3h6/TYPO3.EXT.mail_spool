@@ -68,13 +68,21 @@ class SpoolTransport extends \Swift_SpoolTransport
      */
     public function send(\Swift_Mime_Message $message, &$failedRecipients = null)
     {
-        if ($message->getSubject() === 'Warning - error in TYPO3 installation' && $this->configuration['do_not_spool_syslog_messages']) {
-            $transport = \Swift_MailTransport::newInstance();
-
-            return $transport->send($message, $failedRecipients);
+        if ($message->getSubject() === 'Warning - error in TYPO3 installation' && isset($this->configuration['do_not_spool_syslog_messages']) && true === (bool) $this->configuration['do_not_spool_syslog_messages']) {
+            return $this->getMailTransport()->send($message, $failedRecipients);
         }
 
         return parent::send($message, $failedRecipients);
+    }
+
+    /**
+     * Returns swift mailer mail transport.
+     *
+     * @return MailTransport
+     */
+    protected function getMailTransport()
+    {
+        return \Swift_MailTransport::newInstance();
     }
 
     /**
