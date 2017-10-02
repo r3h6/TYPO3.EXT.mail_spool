@@ -62,7 +62,7 @@ class SpoolCommandController extends CommandController
                 } catch (\Exception $exception) {
                     $message = $exception->getMessage();
                     GeneralUtility::sysLog($message, 'mail_spool', GeneralUtility::SYSLOG_SEVERITY_ERROR);
-                    $GLOBALS['BE_USER']->writelog(4, 0, 2, 0, '[mail_spool]: '.$message, []);
+                    $GLOBALS['BE_USER']->writelog(4, 0, 2, 0, '[mail_spool]: '.$message, array());
                     $this->getLogger()->error($message);
                     throw $exception;
                 }
@@ -101,6 +101,6 @@ class SpoolCommandController extends CommandController
      */
     protected function getLogger()
     {
-        return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
+        return GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
     }
 }
