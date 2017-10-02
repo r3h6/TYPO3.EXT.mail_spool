@@ -19,7 +19,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * SpoolCommandController
+ * SpoolCommandController.
+ *
  * @link https://github.com/symfony/swiftmailer-bundle/blob/master/Command/SendEmailCommand.php
  */
 class SpoolCommandController extends CommandController
@@ -27,11 +28,11 @@ class SpoolCommandController extends CommandController
     /**
      * Sends emails from the spool.
      *
-     * @param  int $messageLimit   The maximum number of messages to send.
-     * @param  int $timeLimit      The time limit for sending messages (in seconds).
-     * @param  int $recoverTimeout The timeout for recovering messages that have taken too long to send (in seconds).
-     * @param  bool $daemon True for running as daemon (EXPERIMENTAL, CLI ONLY!).
-     * @return void
+     * @param int  $messageLimit   The maximum number of messages to send.
+     * @param int  $timeLimit      The time limit for sending messages (in seconds).
+     * @param int  $recoverTimeout The timeout for recovering messages that have taken too long to send (in seconds).
+     * @param bool $daemon         True for running as daemon (EXPERIMENTAL, CLI ONLY!).
+     *
      * @throws \Exception
      */
     public function sendCommand($messageLimit = null, $timeLimit = null, $recoverTimeout = null, $daemon = false)
@@ -55,7 +56,17 @@ class SpoolCommandController extends CommandController
                         $spool->recover();
                     }
                 }
-                $sent = $spool->flushQueue($transport->getRealTransport());
+
+                try {
+                    $sent = $spool->flushQueue($transport->getRealTransport());
+                } catch (\Exception $exception) {
+                    $message = $exception->getMessage();
+                    GeneralUtility::sysLog($message, 'mail_spool', GeneralUtility::SYSLOG_SEVERITY_ERROR);
+                    $GLOBALS['BE_USER']->writelog(4, 0, 2, 0, '[mail_spool]: '.$message, array());
+                    $this->getLogger()->error($message);
+                    throw $exception;
+                }
+
                 $this->outputLine(sprintf('<comment>%d</comment> emails sent', $sent));
             } while ($daemon && $this->idle());
         } else {
@@ -64,7 +75,7 @@ class SpoolCommandController extends CommandController
     }
 
     /**
-     * Be idle for a while
+     * Be idle for a while.
      *
      * @return bool true if relaxed ;-)
      */
@@ -81,5 +92,15 @@ class SpoolCommandController extends CommandController
     protected function getMailer()
     {
         return GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\Mailer');
+    }
+
+    /**
+     * Get class logger.
+     *
+     * @return \TYPO3\CMS\Core\Log\Logger
+     */
+    protected function getLogger()
+    {
+        return GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
     }
 }

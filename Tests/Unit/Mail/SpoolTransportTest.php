@@ -38,8 +38,9 @@ class SpoolTransportTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             'transport' => 'R3H6\\MailSpool\\Mail\\SpoolTransport',
             'spool' => 'R3H6\\MailSpool\\Tests\\Unit\\Mail\\Fixtures\\TestSpool',
             'transport_real' => 'R3H6\\MailSpool\\Tests\\Unit\\Mail\\Fixtures\\TestTransport',
+            'do_not_spool_syslog_messages' => '1',
         );
-        $this->subject = new \R3H6\MailSpool\Mail\SpoolTransport($configuration);
+        $this->subject =  $this->getMock('R3H6\\MailSpool\\Mail\\SpoolTransport', array('getMailTransport'), array($configuration), '', true);
     }
 
     public function tearDown()
@@ -54,5 +55,28 @@ class SpoolTransportTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     {
         $this->assertInstanceOf('R3H6\\MailSpool\\Tests\\Unit\\Mail\\Fixtures\\TestTransport', $this->subject->getRealTransport());
         $this->assertSame('R3H6\\MailSpool\\Mail\\SpoolTransport', $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport']);
+    }
+
+    /**
+     * @test
+     */
+    public function sendWillSendMessageWithMailTransport()
+    {
+        $messageFixture = new \Swift_Message('Warning - error in TYPO3 installation');
+
+        $transportMock = $this->getMock('MailTransport', array('send'), array(), '', false);
+        $transportMock
+            ->expects($this->once())
+            ->method('send')
+            ->with($this->equalTo($messageFixture))
+            ->will($this->returnValue(1));
+
+        $this->subject
+            ->expects($this->once())
+            ->method('getMailTransport')
+            ->will($this->returnValue($transportMock));
+
+
+        $this->subject->send($messageFixture);
     }
 }
