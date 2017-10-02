@@ -30,7 +30,6 @@ Configuration
 
 You can configure the type of spool and the location where the messsages get stored in the extension configurations.
 
-
 :spool:
    **file** Messages get stored to the file system till they get sent through the scheduler or cli command.
 
@@ -44,6 +43,8 @@ You can configure the type of spool and the location where the messsages get sto
 :transport_real:
    Transport used for sending e-mails. Default is same as defined in install tool.
 
+:do_not_spool_syslog_messages:
+   Send syslog messages immediatly through mail transport.
 
 Integration
 -----------

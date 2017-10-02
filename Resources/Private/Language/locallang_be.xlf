@@ -16,6 +16,9 @@
 			<trans-unit id="configuration.transport_real">
 				<source>Real transport: Same as "$GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport']". Empty defaults to whatever is set in local configuration.</source>
 			</trans-unit>
+			<trans-unit id="configuration.do_not_spool_syslog_messages">
+				<source>SysLog: Send syslog messages immediatly through mail transport.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

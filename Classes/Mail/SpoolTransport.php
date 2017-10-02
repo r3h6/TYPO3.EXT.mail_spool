@@ -55,11 +55,26 @@ class SpoolTransport extends \Swift_SpoolTransport
             $mailer = $this->getMailer();
             $transport = $mailer->getTransport();
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
+
             return $transport;
         } catch (\Exception $exception) {
             $GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = $this->configuration['transport'];
             throw new \Exception('Could not create real transport '.$exception->getMessage(), 1476212381);
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function send(\Swift_Mime_Message $message, &$failedRecipients = null)
+    {
+        if ($message->getSubject() === 'Warning - error in TYPO3 installation' && $this->configuration['do_not_spool_syslog_messages']) {
+            $transport = \Swift_MailTransport::newInstance();
+
+            return $transport->send($message, $failedRecipients);
+        }
+
+        return parent::send($message, $failedRecipients);
     }
 
     /**
